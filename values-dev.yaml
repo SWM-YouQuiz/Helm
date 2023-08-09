@@ -11,7 +11,8 @@ quizItService:
     replicaCount: 1
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service
-      tag: latest
+      tag: |
+        ba02cd51d2279acee4053a1a383918fc00e4cc4c
     service:
       name: user-service
       label: user-service
