@@ -3,7 +3,6 @@
 # Declare variables to be passed into your templates.
 
 env: dev
-
 quizItService:
   user:
     name: user
@@ -23,7 +22,6 @@ quizItService:
         request: 1Gi
       service:
         name: user-db-svc
-
   quiz:
     name: quiz
     label: quiz-service
@@ -42,7 +40,6 @@ quizItService:
         request: 10Gi
       service:
         name: quiz-db-svc
-      
   auth:
     name: auth
     label: auth-service
@@ -62,7 +59,6 @@ quizItService:
         name: redis-config
       service:
         name: auth-db-svc
-
   swagger:
     name: swagger
     label: swagger-ui
@@ -71,20 +67,19 @@ quizItService:
     service:
       name: swagger-ui
       label: swagger-ui
-  
   db:
     name: db
-
 storage:
   provisioner: kubernetes.io/aws-ebs
   className: mongo-gp3
   type: gp3
   reclaimPolicy: Delete
   accessMode: ReadWriteOnce
-
 ingress:
   className: "alb"
-  annotations: {
-    alb.ingress.kubernetes.io/scheme: internet-facing,
-    alb.ingress.kubernetes.io/target-type: ip
-  }
+  annotations: {alb.ingress.kubernetes.io/scheme: internet-facing, alb.ingress.kubernetes.io/target-type: ip}
+quiztItService:
+  user:
+    image:
+      tag: |
+        ba02cd51d2279acee4053a1a383918fc00e4cc4c
