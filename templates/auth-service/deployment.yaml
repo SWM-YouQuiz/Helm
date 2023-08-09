@@ -13,7 +13,7 @@ spec:
         app: {{.Values.quizItService.auth.label}}
     spec:
       containers:
-      - image: {{.Values.quizItService.user.auth.name}}:{{.Values.quizItService.auth.image.tag}}
+      - image: {{.Values.quizItService.auth.image.name}}:{{.Values.quizItService.auth.image.tag}}
         imagePullPolicy: Always
         name: {{.Values.quizItService.auth.containerName}}
         ports:
