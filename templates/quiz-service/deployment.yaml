@@ -13,7 +13,7 @@ spec:
         app: {{.Values.quizItService.quiz.label}}
     spec:
       containers:
-      - image: {{.Values.quizItService.quiz.ecr}}
+      - image: {{.Values.quizItService.quiz.image.name}}:{{.Values.quizItService.quiz.image.tag}}
         imagePullPolicy: Always
         name: {{.Values.quizItService.quiz.containerName}}
         ports:

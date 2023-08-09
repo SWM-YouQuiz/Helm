@@ -10,7 +10,9 @@ quizItService:
     label: user-service
     containerName: user-service
     replicaCount: 1
-    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service:latest
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service
+      tag: latest
     service:
       name: user-service
       label: user-service
@@ -27,7 +29,9 @@ quizItService:
     label: quiz-service
     containerName: quiz-service
     replicaCount: 1
-    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service:latest
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service
+      tag: latest
     service:
       name: quiz-service
       label: quiz-service
@@ -44,7 +48,9 @@ quizItService:
     label: auth-service
     containerName: auth-service
     replicaCount: 1
-    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service:latest
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service
+      tag: latest
     service:
       name: auth-service
       label: auth-service
