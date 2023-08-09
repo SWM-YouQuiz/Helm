@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{.Chart.Name}}-{{.Values.quizItService.auth.name}}-db
+spec:
+  serviceName: {{ .Values.quizItService.auth.db.label }}
+  replicas: {{ .Values.quizItService.auth.db.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.quizItService.auth.db.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.quizItService.auth.db.label }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: redis
+        image: redis:7
+        command:
+          - redis-server
+          - "/redis-master/redis.conf"
+        env:
+        - name: MASTER
+          value: "true"
+        ports:
+          - containerPort: 27017
+        resources:
+          limits:
+            cpu: {{ .Values.quizItService.auth.db.requestCpu }}
+        volumeMounts:
+        - mountPath: /redis-master-data
+          name: data
+        - mountPath: /redis-master
+          name: config
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: {{ .Values.quizItService.auth.db.configMap.name }}
+          items:
+          - key: redis-config
+            path: redis.conf

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{.Chart.Name}}-{{.Values.quizItService.quiz.name}}-db
+spec:
+  serviceName: {{ .Values.quizItService.quiz.db.label }}
+  replicas: {{ .Values.quizItService.quiz.db.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.quizItService.quiz.db.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.quizItService.quiz.db.label }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mongo
+        image: mongo:6.0.9-rc1
+        ports:
+          - containerPort: 27017
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-persistent-storage
+    spec:
+      storageClassName: {{ .Values.quizItService.quiz.db.storage.className }}
+      accessModes: 
+        - {{ .Values.quizItService.quiz.db.storage.accessMode }}
+      resources:
+        requests:
+          storage: {{ .Values.quizItService.quiz.db.storage.request }}

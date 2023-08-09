@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Chart.Name}}-{{.Values.quizItService.quiz.name}}-deploy
+spec:
+  selector:
+    matchLabels:
+      app: {{.Values.quizItService.quiz.label}}
+  replicas: {{ .Values.quizItService.quiz.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.quizItService.quiz.label}}
+    spec:
+      containers:
+      - image: {{.Values.quizItService.quiz.ecr}}
+        imagePullPolicy: Always
+        name: {{.Values.quizItService.quiz.containerName}}
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: quizit-secret

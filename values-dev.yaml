@@ -1,0 +1,84 @@
+# Default dev-values for quizit.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+env: dev
+
+quizItService:
+  user:
+    name: user
+    label: user-service
+    containerName: user-service
+    replicaCount: 1
+    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service:latest
+    service:
+      name: user-service
+      label: user-service
+    db:
+      replicaCount: 1
+      label: user-db
+      storage:
+        request: 1Gi
+      service:
+        name: user-db-svc
+
+  quiz:
+    name: quiz
+    label: quiz-service
+    containerName: quiz-service
+    replicaCount: 1
+    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service:latest
+    service:
+      name: quiz-service
+      label: quiz-service
+    db:
+      replicaCount: 1
+      label: quiz-db
+      storage:
+        request: 10Gi
+      service:
+        name: quiz-db-svc
+      
+  auth:
+    name: auth
+    label: auth-service
+    containerName: auth-service
+    replicaCount: 1
+    ecr: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service:latest
+    service:
+      name: auth-service
+      label: auth-service
+    db:
+      replicaCount: 1
+      label: auth-db
+      requestCpu: 0.1
+      configMap:
+        name: redis-config
+      service:
+        name: auth-db-svc
+
+  swagger:
+    name: swagger
+    label: swagger-ui
+    containerName: swagger-ui
+    replicaCount: 1
+    service:
+      name: swagger-ui
+      label: swagger-ui
+  
+  db:
+    name: db
+
+storage:
+  provisioner: kubernetes.io/aws-ebs
+  className: mongo-gp3
+  type: gp3
+  reclaimPolicy: Delete
+  accessMode: ReadWriteOnce
+
+ingress:
+  className: "alb"
+  annotations: {
+    alb.ingress.kubernetes.io/scheme: internet-facing,
+    alb.ingress.kubernetes.io/target-type: ip
+  }

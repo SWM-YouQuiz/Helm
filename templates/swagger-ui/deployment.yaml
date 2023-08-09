@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Chart.Name}}-{{.Values.quizItService.swagger.name}}-deploy
+spec:
+  selector:
+    matchLabels:
+      app: {{.Values.quizItService.swagger.label}}
+  replicas: {{ .Values.quizItService.swagger.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.quizItService.swagger.label}}
+    spec:
+      containers:
+      - image: swaggerapi/swagger-ui
+        imagePullPolicy: Always
+        name: {{.Values.quizItService.swagger.containerName}}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: BASE_URL
+          value: /api/swagger/
+        - name: API_URLS
+          value: >-
+            [
+            {url:'https://quizit-swagger.s3.ap-northeast-2.amazonaws.com/auth.yml', name:'AUTH'},
+            {url:'https://quizit-swagger.s3.ap-northeast-2.amazonaws.com/user.yml', name:'USER'},
+            {url:'https://quizit-swagger.s3.ap-northeast-2.amazonaws.com/quiz.yml', name:'QUIZ'}
+            ]

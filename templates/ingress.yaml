@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: quizit-{{.Values.env}}-alb
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - path: /api/user
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.quizItService.user.service.name}}
+            port:
+              number: 80
+      - path: /api/auth
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.quizItService.auth.service.name}}
+            port:
+              number: 80
+      - path: /api/quiz
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.quizItService.quiz.service.name}}
+            port:
+              number: 80
+      - path: /api/swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.quizItService.swagger.service.name}}
+            port:
+              number: 80
