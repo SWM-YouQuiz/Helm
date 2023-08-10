@@ -30,7 +30,8 @@ quizItService:
     replicaCount: 1
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service
-      tag: latest
+      tag: |
+        05788ed59b217661ab09e1058efa2d5254530e9a
     service:
       name: quiz-service
       label: quiz-service
