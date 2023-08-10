@@ -48,7 +48,8 @@ quizItService:
     replicaCount: 1
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service
-      tag: latest
+      tag: |
+        fe79567c9841cddd4bb80bc36fe4a880e1b7ce43
     service:
       name: auth-service
       label: auth-service
