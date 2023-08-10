@@ -81,8 +81,3 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-quiztItService:
-  user:
-    image:
-      tag: |
-        ba02cd51d2279acee4053a1a383918fc00e4cc4c
