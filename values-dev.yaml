@@ -72,6 +72,10 @@ quizItService:
       label: swagger-ui
   db:
     name: db
+  front:
+    image:
+      tag: |
+        a4e0fb30cb8753958c106c287a5a9fcdb66eb0db
 storage:
   provisioner: kubernetes.io/aws-ebs
   className: mongo-gp3
