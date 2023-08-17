@@ -70,12 +70,20 @@ quizItService:
     service:
       name: swagger-ui
       label: swagger-ui
-  db:
-    name: db
   front:
+    name: front
+    label: front-service
+    containerName: front-service
+    replicaCount: 1
     image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/front-service
       tag: |
         a4e0fb30cb8753958c106c287a5a9fcdb66eb0db
+    service:
+      name: front-service
+      label: front-service
+  db:
+    name: db
 storage:
   provisioner: kubernetes.io/aws-ebs
   className: mongo-gp3
