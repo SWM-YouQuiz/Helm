@@ -31,7 +31,7 @@ quizItService:
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service
       tag: |
-        e37884618fb5c3384f843bee0411bd34eb5c3aba
+        0cd4218258fdea42f78df8cd5b87137dc996d36a
     service:
       name: quiz-service
       label: quiz-service
