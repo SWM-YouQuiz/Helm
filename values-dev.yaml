@@ -50,7 +50,7 @@ quizItService:
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service
       tag: |
-        5b71ac56aaa679d458d3b57b3a638994cb40fd9e
+        26be07e03c0b4bce016f2ba926018844d9074561
     service:
       name: auth-service
       label: auth-service
