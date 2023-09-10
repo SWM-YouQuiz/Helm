@@ -18,6 +18,14 @@ spec:
         name: {{.Values.quizItService.quiz.containerName}}
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: {{.Values.quizItService.quiz.apiPrefix}}{{.Values.livenessProbe}}
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: {{.Values.quizItService.quiz.apiPrefix}}{{.Values.readinessProbe}}
+            port: 8080
         envFrom:
         - secretRef:
             name: quizit-secret

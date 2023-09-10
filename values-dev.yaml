@@ -23,6 +23,7 @@ quizItService:
         request: 1Gi
       service:
         name: user-db-svc
+    apiPrefix: /api/user
   quiz:
     name: quiz
     label: quiz-service
@@ -42,6 +43,7 @@ quizItService:
         request: 10Gi
       service:
         name: quiz-db-svc
+    apiPrefix: /api/quiz
   auth:
     name: auth
     label: auth-service
@@ -62,6 +64,7 @@ quizItService:
         name: redis-config
       service:
         name: auth-db-svc
+    apiPrefix: /api/auth
   swagger:
     name: swagger
     label: swagger-ui
@@ -98,3 +101,5 @@ ingress:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:712744100487:certificate/8c25da53-7ba2-44f7-8c1c-e454de897be8
     alb.ingress.kubernetes.io/ssl-redirect: "443"
+readinessProbe: /actuator/health/readiness
+livenessProbe: /actuator/health/liveness
