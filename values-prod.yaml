@@ -1,0 +1,97 @@
+# Default dev-values for quizit.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+env: prod
+quizItService:
+  user:
+    name: user
+    label: user-service
+    containerName: user-service
+    replicaCount: 1
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service
+      tag: |
+        07a693b840f29e56832470805bae8e6ed395a076
+    service:
+      name: user-service
+      label: user-service
+    db:
+      replicaCount: 1
+      label: user-db
+      storage:
+        request: 1Gi
+      service:
+        name: user-db-svc
+    apiPrefix: /api/user
+  quiz:
+    name: quiz
+    label: quiz-service
+    containerName: quiz-service
+    replicaCount: 1
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/quiz-service
+      tag: |
+        4c53e7fa15b8a02b9af798ec2c5fb25b46a1e713
+    service:
+      name: quiz-service
+      label: quiz-service
+    db:
+      replicaCount: 1
+      label: quiz-db
+      storage:
+        request: 10Gi
+      service:
+        name: quiz-db-svc
+    apiPrefix: /api/quiz
+  auth:
+    name: auth
+    label: auth-service
+    containerName: auth-service
+    replicaCount: 1
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/auth-service
+      tag: |
+        7bfe9e7f725b668cafd5dff626ac728fcfe194b1
+    service:
+      name: auth-service
+      label: auth-service
+    db:
+      replicaCount: 1
+      label: auth-db
+      requestCpu: 0.1
+      configMap:
+        name: redis-config
+      service:
+        name: auth-db-svc
+    apiPrefix: /api/auth
+  front:
+    name: front
+    label: front-service
+    containerName: front-service
+    replicaCount: 1
+    image:
+      name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/front-service
+      tag: |
+        91227b3c5d59159afb9790db39ab4b181778b999
+    service:
+      name: front-service
+      label: front-service
+  db:
+    name: db
+storage:
+  provisioner: kubernetes.io/aws-ebs
+  className: mongo-gp3
+  type: gp3
+  reclaimPolicy: Delete
+  accessMode: ReadWriteOnce
+ingress:
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:712744100487:certificate/8c25da53-7ba2-44f7-8c1c-e454de897be8
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+readinessProbe: /actuator/health/readiness
+livenessProbe: /actuator/health/liveness

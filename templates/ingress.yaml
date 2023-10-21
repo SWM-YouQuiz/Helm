@@ -32,13 +32,6 @@ spec:
             name: {{.Values.quizItService.quiz.service.name}}
             port:
               number: 80
-      - path: /api/swagger
-        pathType: Prefix
-        backend:
-          service:
-            name: {{.Values.quizItService.swagger.service.name}}
-            port:
-              number: 80
       - path: /
         pathType: Prefix
         backend:
