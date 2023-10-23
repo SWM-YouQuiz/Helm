@@ -12,7 +12,7 @@ quizItService:
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/user-service
       tag: |
-        5990798769558abe9fd7aa6c12b58f4a65061cad
+        0856896172f711f5be9169b06540de530c6d7243
     service:
       name: user-service
       label: user-service
