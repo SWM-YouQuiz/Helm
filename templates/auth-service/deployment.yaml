@@ -28,6 +28,6 @@ spec:
             port: 8080
         envFrom:
         - secretRef:
-            name: quizit-secret
+            name: quizit-secret-{{.Values.env}}
         - secretRef:
-            name: quizit-oauth-secret
+            name: quizit-oauth-secret-{{.Values.env}}

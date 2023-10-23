@@ -20,4 +20,4 @@ spec:
         - containerPort: 8080
         envFrom:
         - secretRef:
-            name: quizit-front-secret
+            name: quizit-front-secret-{{.Values.env}}
