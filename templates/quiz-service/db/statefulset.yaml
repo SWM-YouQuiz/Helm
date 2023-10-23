@@ -28,7 +28,7 @@ spec:
     spec:
       storageClassName: {{ .Values.quizItService.quiz.db.storage.className }}
       accessModes: 
-        - {{ .Values.quizItService.quiz.db.storage.accessMode }}
+        - {{ .Values.storage.accessMode }}
       resources:
         requests:
           storage: {{ .Values.quizItService.quiz.db.storage.request }}
