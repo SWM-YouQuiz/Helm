@@ -6,3 +6,4 @@ provisioner: {{ .Values.storage.provisioner }}
 parameters:
   type: {{ .Values.storage.type }}
 reclaimPolicy: {{ .Values.storage.reclaimPolicy }}
+accessMode: {{ .Values.storage.accessMode }}
