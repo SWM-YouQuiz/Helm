@@ -68,12 +68,12 @@ quizItService:
   front:
     name: front
     label: front-service
-    containerName: front-service
+    containerName: front-service 
     replicaCount: 1
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/front-service
       tag: |
-        7e16c120feffbaf05faa739aeb5ffe5e8ac4c6a5
+        cd9b442cf6eb0fb9ae829b9bfcc4469753dd54ec
     service:
       name: front-service
       label: front-service
