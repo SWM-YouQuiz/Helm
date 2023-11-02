@@ -32,6 +32,13 @@ spec:
             name: {{.Values.quizItService.quiz.service.name}}
             port:
               number: 80
+      - path: /vector
+        pathType: Prefix
+        backend:
+          service:
+            name: vector-service
+            port:
+              number: 80
       - path: /
         pathType: Prefix
         backend:
