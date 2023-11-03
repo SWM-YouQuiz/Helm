@@ -73,7 +73,7 @@ quizItService:
     image:
       name: 712744100487.dkr.ecr.ap-northeast-2.amazonaws.com/front-service
       tag: |
-        7ac48087f6e45d363a04d193b3b6de83d8ef11be
+        2b5fbb4213b9e580a050d420959da93db742b62d
     service:
       name: front-service
       label: front-service
