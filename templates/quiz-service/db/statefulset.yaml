@@ -20,7 +20,7 @@ spec:
         ports:
           - containerPort: 27017
         volumeMounts:
-          - name: quizit-quiz-db
+          - name: quizit-quiz-prod
             mountPath: /data/db
       # volumes:
       # - name: quizit-quiz-db
