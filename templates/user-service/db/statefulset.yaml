@@ -20,12 +20,12 @@ spec:
         ports:
           - containerPort: 27017
         volumeMounts:
-          - name: quizit-user-prod
+          - name: quizit-user-db
             mountPath: /data/db
-      # volumes:
-      # - name: quizit-user-db
-      #   persistentVolumeClaim:
-      #     claimName: quizit-user-prod-pvc
+      volumes:
+      - name: quizit-user-db
+        persistentVolumeClaim:
+          claimName: quizit-user-prod-pvc
   # volumeClaimTemplates:
   # - metadata:
   #     name: quizit-user-prod-pvc
