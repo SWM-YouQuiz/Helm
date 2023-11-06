@@ -22,10 +22,10 @@ spec:
         volumeMounts:
           - name: quizit-quiz-db
             mountPath: /data/db
-      volumes:
-      - name: quizit-quiz-db
-        persistentVolumeClaim:
-          claimName: quizit-quiz-prod-pvc
+      # volumes:
+      # - name: quizit-quiz-db
+      #   persistentVolumeClaim:
+      #     claimName: quizit-quiz-prod-pvc
     # spec:
     #   containers:
     #   - name: my-container
