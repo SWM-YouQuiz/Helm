@@ -24,7 +24,7 @@ spec:
             mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: mongo-persistent-storage
+      name: quizit-quiz-prod-pvc
     spec:
       storageClassName: {{ .Values.quizItService.quiz.db.storage.className }}
       accessModes: 
