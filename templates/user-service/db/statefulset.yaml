@@ -20,15 +20,19 @@ spec:
         ports:
           - containerPort: 27017
         volumeMounts:
-          - name: mongo-persistent-storage
+          - name: quizit-user-db
             mountPath: /data/db
-  volumeClaimTemplates:
-  - metadata:
-      name: quizit-user-prod-pvc
-    spec:
-      storageClassName: {{ .Values.quizItService.user.db.storage.className }}
-      accessModes: 
-        - {{ .Values.storage.accessMode }}
-      resources:
-        requests:
-          storage: {{ .Values.quizItService.user.db.storage.request }}
+      volumes:
+      - name: quizit-user-db
+        persistentVolumeClaim:
+          claimName: quizit-user-prod-pvc
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: quizit-user-prod-pvc
+  #   spec:
+  #     storageClassName: {{ .Values.quizItService.user.db.storage.className }}
+  #     accessModes: 
+  #       - {{ .Values.storage.accessMode }}
+  #     resources:
+  #       requests:
+  #         storage: {{ .Values.quizItService.user.db.storage.request }}
